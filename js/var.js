@@ -11,8 +11,10 @@ window.addEventListener("resize",resizeCanvas);
 const keys = {};
 
 //Stats générales
+let level = 1;
 let xp = 0;
 let xpMax = 100;
+let choosingClass = false;
 
 //Stats du joueur
 const player = {
@@ -21,6 +23,8 @@ const player = {
     radius: 25,
     angle: 0,
     speed: 5,
+    hp: 100,
+    hpMax: 100,
 };
 
 //boules d'xp

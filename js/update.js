@@ -1,4 +1,8 @@
 function update() {
+    //fige le jeu sur l'écran de classe
+    if (choosingClass) {
+        return;
+    }
     //détection des touches de déplacements
     if (keys["ArrowUp"]) {
         player.y -= player.speed;
@@ -38,7 +42,7 @@ function update() {
             food.splice(i, 1);
         }
     }
-    //réaooarition aléatoire des boules
+    //réaparition aléatoire des boules
     if (food.length < 25 && Math.random() < 0.02) {
         food.push({
             x: Math.random() * canvas.width,
@@ -46,6 +50,12 @@ function update() {
             radius: 5,
             xpReward: 10,
         });
+    }
+
+    //écran de classe
+    if (xp >= xpMax && !choosingClass) {
+        xp = xpMax;
+        choosingClass = true;
     }
 
 }
