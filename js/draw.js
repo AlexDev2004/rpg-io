@@ -10,6 +10,270 @@ function draw() {
             ctx.fill();
     }
 
+    // Ennemi
+    if (enemy.alive) {
+        ctx.beginPath();
+            ctx.fillStyle = "red";
+            ctx.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);
+            ctx.fill();
+    }
+
+    //Barre de vie Ennemie
+    if (enemy.alive && enemy.healthBarTimer > 0) {
+    const barWidth = 60;
+    const barHeight = 8;
+    const barX = enemy.x - barWidth / 2;
+    const barY = enemy.y - enemy.radius - 18;
+
+    ctx.fillStyle = "gray";
+    ctx.fillRect(barX, barY, barWidth, barHeight);
+
+    ctx.fillStyle = "red";
+    ctx.fillRect(barX, barY, (enemy.hp / enemy.hpMax) * barWidth, barHeight);
+
+    ctx.strokeStyle = "black";
+    ctx.strokeRect(barX, barY, barWidth, barHeight);
+}
+
+    //Armes
+    ctx.save();
+    ctx.translate(player.x, player.y);
+    ctx.rotate(player.angle);
+    if (mouse.x < player.x) {
+    ctx.scale(1, -1);
+}
+
+    if (playerClass === "Stick") {
+        ctx.fillStyle = "brown";
+        ctx.fillRect(player.radius - 5, -5, 60, 10);
+        ctx.beginPath();
+            ctx.arc(player.radius + 55, 0, 5, 0, Math.PI * 2);
+            ctx.fill();
+    }
+
+    else if (playerClass === "Sword") {
+        ctx.fillStyle = "silver";
+        ctx.fillRect(player.radius - 5, -4, 70, 8);
+        ctx.beginPath();
+            ctx.moveTo(player.radius+65, -4);
+            ctx.lineTo(player.radius+65, 4);
+            ctx.lineTo(player.radius+75, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.fillStyle = "gold";
+        ctx.fillRect(player.radius, -10, 6, 20);
+    }
+    else if (playerClass === "Thief") {
+        ctx.fillStyle = "silver";
+        ctx.fillRect(player.radius+7, -5, 42, 10);
+        ctx.beginPath();
+            ctx.moveTo(player.radius+47, -5);
+            ctx.lineTo(player.radius+47, 5);
+            ctx.lineTo(player.radius+60, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.fillStyle = "orange";
+        ctx.fillRect(player.radius+2, -7.5, 8, 15);
+        ctx.fillStyle = "brown";
+        ctx.fillRect(player.radius, -4, -5, 8);
+    }
+    else if (playerClass === "Knight") {
+        ctx.strokeStyle = "gray";
+        ctx.beginPath();
+            ctx.arc(0, 0, player.radius+5, 0, Math.PI*2);
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        ctx.fillStyle = "silver";
+        ctx.fillRect(player.radius, -7, 95, 14);
+        ctx.beginPath();
+            ctx.moveTo(player.radius+95, -7);
+            ctx.lineTo(player.radius+95, 7);
+            ctx.lineTo(player.radius+110, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.fillStyle = "gold";
+        ctx.fillRect(player.radius, -18, 8, 36);
+    }
+     else if (playerClass === "Spear") {
+        ctx.fillStyle = "silver";
+        ctx.fillRect(player.radius+110, -6, 40, 12);
+        ctx.beginPath();
+            ctx.moveTo(player.radius+150, -6);
+            ctx.lineTo(player.radius+150, 6);
+            ctx.lineTo(player.radius+180, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.fillStyle = "brown";
+        ctx.fillRect(player.radius, -2.5, 110, 5);
+        ctx.beginPath();
+            ctx.fillStyle = "silver";
+            ctx.arc(player.radius+110,0,5,0,Math.PI*2);
+            ctx.fill();
+    }
+
+    else if (playerClass === "Axe") {
+        ctx.fillStyle = "brown";
+        ctx.fillRect(player.radius - 5, -4, 50, 8);
+        ctx.beginPath();
+            ctx.arc(player.radius + 45, 0, 4, 0, Math.PI * 2);
+            ctx.fill();
+        ctx.fillStyle = "silver";
+        ctx.beginPath();
+            ctx.moveTo(player.radius + 32, 5);
+            ctx.lineTo(player.radius + 43, 5);
+            ctx.lineTo(player.radius + 55, 25);
+            ctx.lineTo(player.radius + 20, 25);
+            ctx.closePath();
+            ctx.fill();
+        ctx.beginPath();
+            ctx.moveTo(player.radius + 34, -2);
+            ctx.lineTo(player.radius + 41, -2);
+            ctx.lineTo(player.radius + 39, -10);
+            ctx.lineTo(player.radius + 36, -10);
+            ctx.closePath();
+            ctx.fill();
+    }
+    else if (playerClass === "Hammer") {
+        ctx.fillStyle = "brown";
+        ctx.fillRect(player.radius - 5, -4, 70, 8);
+        ctx.beginPath();
+            ctx.arc(player.radius + 65, 0, 4, 0, Math.PI * 2);
+            ctx.fill();
+        ctx.fillStyle = "silver";
+        ctx.fillRect(player.radius+37, -25, 22, 50);
+    }
+    else if (playerClass === "Warrior") {
+        ctx.fillStyle = "brown";
+        ctx.fillRect(player.radius - 5, -4, 70, 8);
+        ctx.beginPath();
+            ctx.arc(player.radius + 65, 0, 4, 0, Math.PI * 2);
+            ctx.fill();
+        ctx.fillStyle = "silver";
+        ctx.beginPath();
+            ctx.moveTo(player.radius + 45, 3);
+            ctx.lineTo(player.radius + 65, 3);
+            ctx.lineTo(player.radius + 85, 35);
+            ctx.lineTo(player.radius + 30, 35);
+            ctx.closePath();
+            ctx.fill();
+        ctx.beginPath();
+            ctx.moveTo(player.radius + 45, -3);
+            ctx.lineTo(player.radius + 65, -3);
+            ctx.lineTo(player.radius + 85, -35);
+            ctx.lineTo(player.radius + 30, -35);
+            ctx.closePath();
+            ctx.fill();
+    }
+
+    else if (playerClass === "Bow") {
+        ctx.strokeStyle = "brown";
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.arc(player.radius - 5, 0, 25, -Math.PI / 2, Math.PI / 2);
+        ctx.stroke();
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(player.radius - 5, -25);
+        ctx.lineTo(player.radius - 5, 25);
+        ctx.stroke();
+    }
+    else if (playerClass === "Wizard") {
+        ctx.fillStyle = "brown";
+        ctx.fillRect(player.radius,-4,43,8);
+        ctx.beginPath();
+            ctx.strokeStyle= "brown";
+            ctx.lineWidth = 4;
+            ctx.arc(player.radius+55,0,12,0,Math.PI*2);
+            ctx.stroke();
+        ctx.beginPath();
+            ctx.fillStyle = "purple";
+            ctx.arc(player.radius+55,0,7,0,Math.PI*2);
+            ctx.fill();
+    }
+
+    ctx.restore();
+
+    //Flèche d'arc
+    if (playerClass === "Bow") {
+        let arrowDrawX;
+        let arrowDrawY;
+        let arrowDrawAngle;
+        if (arrow.active) {
+            arrowDrawX = arrow.x;
+            arrowDrawY = arrow.y;
+            arrowDrawAngle = arrow.angle;
+        } else {
+            arrowDrawX = player.x + Math.cos(player.angle) * (player.radius + 20);
+            arrowDrawY = player.y + Math.sin(player.angle) * (player.radius + 20);
+            arrowDrawAngle = player.angle;
+        }
+        ctx.save();
+        ctx.translate(arrowDrawX, arrowDrawY);
+        ctx.rotate(arrowDrawAngle);
+        ctx.fillStyle = "saddlebrown";
+        ctx.fillRect(-20, -2, 40, 4);
+        ctx.beginPath();
+        ctx.moveTo(28, 0);
+        ctx.lineTo(20, -6);
+        ctx.lineTo(20, 6);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+    }
+    //Boule magique
+    if (playerClass === "Wizard" && magic.active) {
+
+    ctx.save();
+    ctx.translate(magic.x, magic.y);
+
+    ctx.fillStyle = "purple";
+    ctx.beginPath();
+    ctx.arc(0, 0, 10, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+}
+//Hache de lancé
+    if (playerClass === "Thrower") {
+        let thAxeDrawX;
+        let thAxeDrawY;
+        let thAxeDrawAngle;
+        if (thAxe.active) {
+            thAxeDrawX = thAxe.x;
+            thAxeDrawY = thAxe.y;
+            thAxeDrawAngle = thAxe.angle;
+        } else {
+            thAxeDrawX = player.x + Math.cos(player.angle) * (player.radius);
+            thAxeDrawY = player.y + Math.sin(player.angle) * (player.radius);
+            thAxeDrawAngle = player.angle;
+        }
+        ctx.save();
+        ctx.translate(thAxeDrawX, thAxeDrawY);
+        ctx.rotate(thAxeDrawAngle);
+        ctx.fillStyle = "brown";
+        ctx.fillRect(- 5, -4, 50, 8);
+        ctx.beginPath();
+            ctx.arc(45, 0, 4, 0, Math.PI * 2);
+            ctx.fill();
+        ctx.fillStyle = "silver";
+        ctx.beginPath();
+            ctx.moveTo(32, 5);
+            ctx.lineTo(43, 5);
+            ctx.lineTo(55, 25);
+            ctx.lineTo(20, 25);
+            ctx.closePath();
+            ctx.fill();
+        ctx.beginPath();
+            ctx.moveTo(34, -2);
+            ctx.lineTo(41, -2);
+            ctx.lineTo(39, -10);
+            ctx.lineTo(36, -10);
+            ctx.closePath();
+            ctx.fill();
+        ctx.restore();
+    }
+
     //dessin du joueur
     ctx.beginPath();
     ctx.fillStyle = "blue";
@@ -64,6 +328,7 @@ function draw() {
     drawClassCard(availableClasses[1], 550, 220);
     drawClassCard(availableClasses[2], 850, 220);
     }
+    
 }
 
 function drawClassCard(className, cardX, cardY) {
@@ -81,6 +346,180 @@ function drawClassCard(className, cardX, cardY) {
 
     ctx.save();
     ctx.translate(cx - 40, cy);
+
+    if (className === "Sword") {
+        ctx.fillStyle = "silver";
+        ctx.fillRect(25, -4, 70, 8);
+        ctx.beginPath();
+            ctx.moveTo(95, -4);
+            ctx.lineTo(95, 4);
+            ctx.lineTo(108, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.fillStyle = "gold";
+        ctx.fillRect(20, -18, 8, 36);
+        ctx.fillStyle = "brown";
+        ctx.fillRect(0, -4, 20, 8);
+    }
+    else if (className === "Thief") {
+        ctx.fillStyle = "silver";
+        ctx.fillRect(25, -5, 40, 10);
+        ctx.beginPath();
+            ctx.moveTo(65, -5);
+            ctx.lineTo(65, 5);
+            ctx.lineTo(78, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.fillStyle = "orange";
+        ctx.fillRect(20, -7.5, 8, 15);
+        ctx.fillStyle = "brown";
+        ctx.fillRect(8, -4, 12, 8);
+    }
+    else if (className === "Knight") {
+        ctx.strokeStyle = "gray";
+        ctx.beginPath();
+            ctx.arc(50, 0, 50, 0, Math.PI*2);
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        ctx.fillStyle = "brown";
+        ctx.fillRect(-20, -4, 22, 8);
+        ctx.fillStyle = "silver";
+        ctx.fillRect(10, -7, 95, 14);
+        ctx.beginPath();
+            ctx.moveTo(105, -7);
+            ctx.lineTo(105, 7);
+            ctx.lineTo(120, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.fillStyle = "gold";
+        ctx.fillRect(2, -18, 8, 36);
+        ctx.beginPath();
+            ctx.arc(-20, 0, 6, 0, Math.PI*2);
+            ctx.fill();      
+    }
+    else if (className === "Spear") {
+        ctx.fillStyle = "silver";
+        ctx.fillRect(40, -6, 40, 12);
+        ctx.beginPath();
+            ctx.moveTo(80, -6);
+            ctx.lineTo(80, 6);
+            ctx.lineTo(110, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.fillStyle = "brown";
+        ctx.fillRect(-70, -2.5, 110, 5);
+        ctx.beginPath();
+            ctx.fillStyle = "silver";
+            ctx.arc(40,0,5,0,Math.PI*2);
+            ctx.fill();
+    }
+
+    else if (className === "Axe") {
+        ctx.fillStyle = "brown";
+        ctx.fillRect(-10, -4, 60, 8);
+        ctx.beginPath();
+            ctx.arc(-10, 0, 4, 0, Math.PI * 2);
+            ctx.fill();
+        ctx.beginPath();
+            ctx.arc(50, 0, 4, 0, Math.PI * 2);
+            ctx.fill();
+        ctx.fillStyle = "silver";
+        ctx.beginPath();
+            ctx.moveTo(32, 4);
+            ctx.lineTo(43, 4);
+            ctx.lineTo(55, 29);
+            ctx.lineTo(20, 29);
+            ctx.closePath();
+            ctx.fill();
+        ctx.beginPath();
+            ctx.moveTo(34, -2);
+            ctx.lineTo(41, -2);
+            ctx.lineTo(39, -10);
+            ctx.lineTo(36, -10);
+            ctx.closePath();
+            ctx.fill();
+    }
+    else if (className === "Hammer") {
+        ctx.fillStyle = "brown";
+        ctx.fillRect(-35, -4, 70, 8);
+        ctx.beginPath();
+            ctx.arc(35, 0, 4, 0, Math.PI * 2);
+            ctx.fill();
+        ctx.fillStyle = "silver";
+        ctx.fillRect(7, -25, 22, 50);
+    }
+    else if (className === "Warrior") {
+        ctx.fillStyle = "brown";
+        ctx.fillRect(-35, -4, 70, 8);
+        ctx.beginPath();
+            ctx.arc(35, 0, 4, 0, Math.PI * 2);
+            ctx.fill();
+        ctx.fillStyle = "silver";
+        ctx.beginPath();
+            ctx.moveTo(15, 3);
+            ctx.lineTo(35, 3);
+            ctx.lineTo(55, 35);
+            ctx.lineTo(0, 35);
+            ctx.closePath();
+            ctx.fill();
+        ctx.beginPath();
+            ctx.moveTo(15, -3);
+            ctx.lineTo(35, -3);
+            ctx.lineTo(55, -35);
+            ctx.lineTo(0, -35);
+            ctx.closePath();
+            ctx.fill();
+    }
+
+    else if (className === "Bow" || className === "Crossbow" || className === "Hunter" || className === "Wizard") {
+        ctx.strokeStyle = "brown";
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.arc(45, 0, 35, -Math.PI / 2, Math.PI / 2);
+        ctx.stroke();
+
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(45, -35);
+        ctx.lineTo(45, 35);
+        ctx.stroke();
+    }
+    else if (className === "Bow" || className === "Crossbow" || className === "Hunter" || className === "Wizard") {
+        ctx.strokeStyle = "brown";
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.arc(45, 0, 35, -Math.PI / 2, Math.PI / 2);
+        ctx.stroke();
+
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(45, -35);
+        ctx.lineTo(45, 35);
+        ctx.stroke();
+    }
+    else if (className === "Bow" || className === "Crossbow" || className === "Hunter" || className === "Wizard") {
+        ctx.strokeStyle = "brown";
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.arc(45, 0, 35, -Math.PI / 2, Math.PI / 2);
+        ctx.stroke();
+
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(45, -35);
+        ctx.lineTo(45, 35);
+        ctx.stroke();
+    }
+
+    else {
+        ctx.fillStyle = "gray";
+        ctx.beginPath();
+        ctx.arc(45, 0, 25, 0, Math.PI * 2);
+        ctx.fill();
+    }
 
     ctx.restore();
 

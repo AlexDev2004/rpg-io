@@ -8,9 +8,13 @@ function resizeCanvas(){
 resizeCanvas();
 window.addEventListener("resize",resizeCanvas);
 
+//Position de départ de la souris
 const keys = {};
+const mouse = {
+    x: canvas.width/2,
+    y: canvas.height/2,
+};
 
-//Arbre des classes
 const classTree = {
     "Stick": ["Sword", "Axe", "Bow"],
 
@@ -39,6 +43,60 @@ const classStat = {
         speed: 5,
         cooldown: 30,
     },
+    "Sword": {
+        damage: 10,
+        hpMax: 130,
+        speed: 5,
+        cooldown: 30,
+    },
+    "Axe": {
+        damage: 20,
+        hpMax: 130,
+        speed: 2.5,
+        cooldown: 70,
+    },
+    "Bow": {
+        damage: 5,
+        hpMax: 110,
+        speed: 5,
+        cooldown: 30,
+    },
+    "Thief": {
+        damage: 5,
+        hpMax: 110,
+        speed: 8,
+        cooldown: 18,
+    },
+    "Knight": {
+        damage: 20,
+        hpMax: 180,
+        speed: 4,
+        cooldown: 40,
+    },
+    "Spear": {
+        damage: 10,
+        hpMax: 140,
+        speed: 4,
+        cooldown: 40,
+    },
+    "Hammer": {
+        damage: 30,
+        hpMax: 140,
+        speed: 5,
+        cooldown: 30,
+    },
+    "Warrior": {
+        damage: 40,
+        hpMax: 150,
+        speed: 2.5,
+        cooldown: 70,
+    },
+    "Thrower": {
+        damage: 10,
+        hpMax: 130,
+        speed: 5,
+        cooldown: 30,
+    },
 }
 
 //Stats générales
@@ -59,6 +117,56 @@ const player = {
     damage: classStat[playerClass].damage,
     speed: classStat[playerClass].speed,
     cooldown: classStat[playerClass].cooldown,
+};
+
+// Mettre les cooldown des armes à 0
+let attackCooldown = 0;
+let arrowCooldown = 0;
+let magicCooldown = 0;
+let thAxeCooldown = 0;
+
+//Variables des ennemis
+const enemy = {
+    x: canvas.width/2 + 250,
+    y: canvas.height/2,
+    radius: 30,
+    hp: 100,
+    hpMax: 100,
+    xpReward: 50,
+    alive: true,
+    respawnTimer: 0,
+    healthBarTimer: 0,
+};
+
+//Variables des flèches
+const arrow = {
+    x: 0,
+    y: 0,
+    angle: 0,
+    speed: 10,
+    distance: 0,
+    maxDistance: 500,
+    active: false,
+};
+//Variables des sorts
+const magic = {
+    x: 0,
+    y: 0,
+    angle: 0,
+    speed: 8,
+    distance: 0,
+    maxDistance: 300,
+    active: false,
+};
+//Variables des haches de lancé
+const thAxe = {
+    x: 0,
+    y: 0,
+    angle: 0,
+    speed: 5,
+    distance: 0,
+    maxDistance: 200,
+    active: false,
 };
 
 //boules d'xp
