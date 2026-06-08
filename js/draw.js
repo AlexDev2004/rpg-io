@@ -47,4 +47,44 @@ function draw() {
     ctx.fillStyle = "black";
     ctx.font = "14px Arial";
     ctx.fillText("HP : " + player.hp + " / " + player.hpMax, hpBarX + 8, hpBarY + 15);
+
+    //cartes de classes
+    if (choosingClass) {
+
+    const availableClasses = classTree[playerClass];
+
+    ctx.fillStyle = "rgba(0, 0, 0, 0.35)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "white";
+    ctx.font = "36px Arial";
+    ctx.fillText("Choisis une classe", canvas.width / 2 - 150, 150);
+
+    drawClassCard(availableClasses[0], 250, 220);
+    drawClassCard(availableClasses[1], 550, 220);
+    drawClassCard(availableClasses[2], 850, 220);
+    }
+}
+
+function drawClassCard(className, cardX, cardY) {
+    if (className === "") return;
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(cardX, cardY, 200, 200);
+
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(cardX, cardY, 200, 200);
+
+    const cx = cardX + 100;
+    const cy = cardY + 95;
+
+    ctx.save();
+    ctx.translate(cx - 40, cy);
+
+    ctx.restore();
+
+    ctx.fillStyle = "black";
+    ctx.font = "24px Arial";
+    ctx.fillText(className, cardX + 45, cardY + 170);
 }
