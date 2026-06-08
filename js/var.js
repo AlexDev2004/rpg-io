@@ -10,7 +10,11 @@ window.addEventListener("resize",resizeCanvas);
 
 const keys = {};
 
-//position de départ du joueur
+//Stats générales
+let xp = 0;
+let xpMax = 100;
+
+//Stats du joueur
 const player = {
     x: canvas.width/2,
     y: canvas.height/2,
@@ -18,3 +22,6 @@ const player = {
     angle: 0,
     speed: 5,
 };
+
+//boules d'xp
+const food = []; 
