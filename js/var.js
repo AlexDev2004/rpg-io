@@ -8,10 +8,13 @@ function resizeCanvas(){
 resizeCanvas();
 window.addEventListener("resize",resizeCanvas);
 
+const keys = {};
+
 //position de départ du joueur
 const player = {
     x: canvas.width/2,
     y: canvas.height/2,
     radius: 25,
     angle: 0,
+    speed: 5,
 };
