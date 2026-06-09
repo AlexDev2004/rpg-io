@@ -154,6 +154,32 @@ function update() {
         arrow.active = false;
         }
     }
+    //Système d'arc2
+    if (arrowToCooldown > 0) {
+        arrowToCooldown--;
+    }
+    if (arrowTo.active) {
+        arrowTo.x += Math.cos(arrowTo.angle) * arrowTo.speed;
+        arrowTo.y += Math.sin(arrowTo.angle) * arrowTo.speed;
+        arrowTo.distance += arrowTo.speed;
+        if (enemy.alive) {
+            const distanceToEnemy = Math.hypot(enemy.x - arrowTo.x, enemy.y - arrowTo.y);
+            if (distanceToEnemy < enemy.radius) {
+                enemy.hp -= player.damage;
+                enemy.healthBarTimer = 120;
+                arrowTo.active = false;
+                if (enemy.hp <= 0) {
+                    enemy.hp = 0;
+                    enemy.alive = false;
+                    enemy.respawnTimer = 180;
+                    xp += enemy.xpReward;
+                }
+            }
+        }
+        if (arrowTo.distance >= arrowTo.maxDistance) {
+        arrowTo.active = false;
+        }
+    }
     //Système d'arbalette
     if (boltCooldown > 0) {
         boltCooldown--;
@@ -180,6 +206,7 @@ function update() {
         bolt.active = false;
         }
     }
+    
     //Système de magie
     if (magicCooldown > 0) {
         magicCooldown--;

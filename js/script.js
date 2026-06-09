@@ -97,6 +97,21 @@ document.addEventListener("mousedown", function(event) {
 
         arrowCooldown = player.cooldown;
     }
+    //tirer une flèche2
+    if (
+        event.button === 0 &&
+        playerClass === "Hunter" &&
+        !arrowTo.active &&
+        arrowToCooldown === 0
+    ) {
+        arrowTo.active = true;
+        arrowTo.x = player.x + Math.cos(player.angle) * (player.radius + 20);
+        arrowTo.y = player.y + Math.sin(player.angle) * (player.radius + 20);
+        arrowTo.angle = player.angle;
+        arrowTo.distance = 0;
+
+        arrowToCooldown = player.cooldown;
+    }
     //tirer un carreau
     if (
         event.button === 0 &&

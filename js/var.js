@@ -10,6 +10,8 @@ window.addEventListener("resize",resizeCanvas);
 
 //Position de départ de la souris
 const keys = {};
+const deg = degre => degre * Math.PI / 180;
+const degre = 0;
 const mouse = {
     x: canvas.width/2,
     y: canvas.height/2,
@@ -97,6 +99,12 @@ const classStat = {
         speed: 5,
         cooldown: 30,
     },
+    "Hunter": {
+        damage: 10,
+        hpMax: 120,
+        speed: 5,
+        cooldown: 40,
+    },
     "Crossbow": {
         damage: 20,
         hpMax: 130,
@@ -134,6 +142,7 @@ const player = {
 // Mettre les cooldown des armes à 0
 let attackCooldown = 0;
 let arrowCooldown = 0;
+let arrowToCooldown = 0;
 let magicCooldown = 0;
 let thAxeCooldown = 0;
 let boltCooldown = 0;
@@ -167,6 +176,16 @@ const bolt = {
     y: 0,
     angle: 0,
     speed: 20,
+    distance: 0,
+    maxDistance: 500,
+    active: false,
+};
+//Variables des flèches2
+const arrowTo = {
+    x: 0,
+    y: 0,
+    angle: 0,
+    speed: 10,
     distance: 0,
     maxDistance: 500,
     active: false,
