@@ -195,27 +195,27 @@ function draw() {
         ctx.beginPath();
             ctx.strokeStyle = "silver";
             ctx.lineWidth = 4;
-            ctx.arc(player.radius+64, 0, 6, 0, Math.PI*2);
+            ctx.arc(player.radius+44, 0, 6, 0, Math.PI*2);
             ctx.stroke();
         ctx.fillStyle = "brown";
-        ctx.fillRect(player.radius, -6, 40, 12);
+        ctx.fillRect(player.radius, -6, 20, 12);
         ctx.beginPath();
-            ctx.arc(player.radius+40, 0, 6, 0, Math.PI*2);
+            ctx.arc(player.radius+20, 0, 6, 0, Math.PI*2);
             ctx.fill();
-        ctx.fillRect(player.radius+40, -4, 20, 8);
+        ctx.fillRect(player.radius+20, -4, 20, 8);
         ctx.beginPath();
-            ctx.arc(player.radius+60, 0, 4, 0, Math.PI*2);
+            ctx.arc(player.radius+40, 0, 4, 0, Math.PI*2);
             ctx.fill();
         ctx.beginPath();
             ctx.strokeStyle = "brown";
             ctx.lineWidth = 5;
-            ctx.arc(player.radius+35, 0, 20, -Math.PI/2, Math.PI/2);
+            ctx.arc(player.radius+15, 0, 20, -Math.PI/2, Math.PI/2);
             ctx.stroke();
         ctx.beginPath();
             ctx.strokeStyle = "white";
             ctx.lineWidth = 2
-            ctx.moveTo(player.radius+35, -20);
-            ctx.lineTo(player.radius+35, 20);
+            ctx.moveTo(player.radius+15, -20);
+            ctx.lineTo(player.radius+15, 20);
             ctx.stroke();
     }
 
@@ -582,7 +582,7 @@ function drawClassCard(className, cardX, cardY) {
             ctx.arc(35, 0, 20, -Math.PI/2, Math.PI/2);
             ctx.stroke();
         ctx.beginPath();
-            ctx.strokeStyle = "white";
+            ctx.strokeStyle = "black";
             ctx.lineWidth = 2
             ctx.moveTo(35, -20);
             ctx.lineTo(35, 20);
