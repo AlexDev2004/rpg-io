@@ -119,8 +119,8 @@ function draw() {
             ctx.fill();
         ctx.fillStyle = "silver";
         ctx.beginPath();
-            ctx.moveTo(player.radius + 32, 5);
-            ctx.lineTo(player.radius + 43, 5);
+            ctx.moveTo(player.radius + 32, 4);
+            ctx.lineTo(player.radius + 43, 4);
             ctx.lineTo(player.radius + 55, 25);
             ctx.lineTo(player.radius + 20, 25);
             ctx.closePath();
@@ -191,6 +191,33 @@ function draw() {
             ctx.arc(player.radius+55,0,7,0,Math.PI*2);
             ctx.fill();
     }
+    else if (playerClass === "Crossbow") {
+        ctx.beginPath();
+            ctx.strokeStyle = "silver";
+            ctx.lineWidth = 4;
+            ctx.arc(player.radius+64, 0, 6, 0, Math.PI*2);
+            ctx.stroke();
+        ctx.fillStyle = "brown";
+        ctx.fillRect(player.radius, -6, 40, 12);
+        ctx.beginPath();
+            ctx.arc(player.radius+40, 0, 6, 0, Math.PI*2);
+            ctx.fill();
+        ctx.fillRect(player.radius+40, -4, 20, 8);
+        ctx.beginPath();
+            ctx.arc(player.radius+60, 0, 4, 0, Math.PI*2);
+            ctx.fill();
+        ctx.beginPath();
+            ctx.strokeStyle = "brown";
+            ctx.lineWidth = 5;
+            ctx.arc(player.radius+35, 0, 20, -Math.PI/2, Math.PI/2);
+            ctx.stroke();
+        ctx.beginPath();
+            ctx.strokeStyle = "white";
+            ctx.lineWidth = 2
+            ctx.moveTo(player.radius+35, -20);
+            ctx.lineTo(player.radius+35, 20);
+            ctx.stroke();
+    }
 
     ctx.restore();
 
@@ -219,6 +246,33 @@ function draw() {
         ctx.lineTo(20, 6);
         ctx.closePath();
         ctx.fill();
+        ctx.restore();
+    }
+    //Carreau d'arbalette
+    if (playerClass === "Crossbow") {
+        let boltDrawX;
+        let boltDrawY;
+        let boltDrawAngle;
+        if (bolt.active) {
+            boltDrawX = bolt.x;
+            boltDrawY = bolt.y;
+            boltDrawAngle = bolt.angle;
+        } else {
+            boltDrawX = player.x + Math.cos(player.angle) * (player.radius);
+            boltDrawY = player.y + Math.sin(player.angle) * (player.radius);
+            boltDrawAngle = player.angle;
+        }
+        ctx.save();
+        ctx.translate(boltDrawX, boltDrawY);
+        ctx.rotate(boltDrawAngle);
+        ctx.fillStyle = "saddlebrown";
+        ctx.fillRect(30, -2, 35, 4);
+        ctx.beginPath();
+            ctx.moveTo(69, 0);
+            ctx.lineTo(65, -2);
+            ctx.lineTo(65, 2);
+            ctx.closePath();
+            ctx.fill();
         ctx.restore();
     }
     //Boule magique
@@ -258,17 +312,10 @@ function draw() {
             ctx.fill();
         ctx.fillStyle = "silver";
         ctx.beginPath();
-            ctx.moveTo(32, 5);
-            ctx.lineTo(43, 5);
-            ctx.lineTo(55, 25);
-            ctx.lineTo(20, 25);
-            ctx.closePath();
-            ctx.fill();
-        ctx.beginPath();
-            ctx.moveTo(34, -2);
-            ctx.lineTo(41, -2);
-            ctx.lineTo(39, -10);
-            ctx.lineTo(36, -10);
+            ctx.moveTo(30, 3.5);
+            ctx.lineTo(45, 3.5);
+            ctx.lineTo(50, 25);
+            ctx.lineTo(25, 25);
             ctx.closePath();
             ctx.fill();
         ctx.restore();
@@ -470,8 +517,24 @@ function drawClassCard(className, cardX, cardY) {
             ctx.closePath();
             ctx.fill();
     }
+    else if (className === "Thrower") {
+        ctx.fillStyle = "brown";
+        ctx.fillRect(- 5, -4, 50, 8);
+        ctx.beginPath();
+            ctx.arc(45, 0, 4, 0, Math.PI * 2);
+            ctx.fill();
+        ctx.fillStyle = "silver";
+        ctx.beginPath();
+            ctx.moveTo(32, 3.5);
+            ctx.lineTo(43, 3.5);
+            ctx.lineTo(55, 25);
+            ctx.lineTo(20, 25);
+            ctx.closePath();
+            ctx.fill();
+        ctx.restore();
+    }
 
-    else if (className === "Bow" || className === "Crossbow" || className === "Hunter" || className === "Wizard") {
+    else if (className === "Bow") {
         ctx.strokeStyle = "brown";
         ctx.lineWidth = 6;
         ctx.beginPath();
@@ -485,33 +548,45 @@ function drawClassCard(className, cardX, cardY) {
         ctx.lineTo(45, 35);
         ctx.stroke();
     }
-    else if (className === "Bow" || className === "Crossbow" || className === "Hunter" || className === "Wizard") {
-        ctx.strokeStyle = "brown";
-        ctx.lineWidth = 6;
+    else if (className === "Wizard") {
+        ctx.fillStyle = "brown";
+        ctx.fillRect(0,-4,43,8);
         ctx.beginPath();
-        ctx.arc(45, 0, 35, -Math.PI / 2, Math.PI / 2);
-        ctx.stroke();
-
-        ctx.strokeStyle = "black";
-        ctx.lineWidth = 2;
+            ctx.strokeStyle= "brown";
+            ctx.lineWidth = 4;
+            ctx.arc(55,0,12,0,Math.PI*2);
+            ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(45, -35);
-        ctx.lineTo(45, 35);
-        ctx.stroke();
+            ctx.fillStyle = "purple";
+            ctx.arc(55,0,7,0,Math.PI*2);
+            ctx.fill();
     }
-    else if (className === "Bow" || className === "Crossbow" || className === "Hunter" || className === "Wizard") {
-        ctx.strokeStyle = "brown";
-        ctx.lineWidth = 6;
+    else if (className === "Crossbow") {
         ctx.beginPath();
-        ctx.arc(45, 0, 35, -Math.PI / 2, Math.PI / 2);
-        ctx.stroke();
-
-        ctx.strokeStyle = "black";
-        ctx.lineWidth = 2;
+            ctx.strokeStyle = "silver";
+            ctx.lineWidth = 4;
+            ctx.arc(64, 0, 6, 0, Math.PI*2);
+            ctx.stroke();
+        ctx.fillStyle = "brown";
+        ctx.fillRect(0, -6, 40, 12);
         ctx.beginPath();
-        ctx.moveTo(45, -35);
-        ctx.lineTo(45, 35);
-        ctx.stroke();
+            ctx.arc(40, 0, 6, 0, Math.PI*2);
+            ctx.fill();
+        ctx.fillRect(40, -4, 20, 8);
+        ctx.beginPath();
+            ctx.arc(60, 0, 4, 0, Math.PI*2);
+            ctx.fill();
+        ctx.beginPath();
+            ctx.strokeStyle = "brown";
+            ctx.lineWidth = 5;
+            ctx.arc(35, 0, 20, -Math.PI/2, Math.PI/2);
+            ctx.stroke();
+        ctx.beginPath();
+            ctx.strokeStyle = "white";
+            ctx.lineWidth = 2
+            ctx.moveTo(35, -20);
+            ctx.lineTo(35, 20);
+            ctx.stroke();
     }
 
     else {

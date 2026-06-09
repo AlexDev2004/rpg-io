@@ -97,6 +97,21 @@ document.addEventListener("mousedown", function(event) {
 
         arrowCooldown = player.cooldown;
     }
+    //tirer un carreau
+    if (
+        event.button === 0 &&
+        playerClass === "Crossbow" &&
+        !bolt.active &&
+        boltCooldown === 0
+    ) {
+        bolt.active = true;
+        bolt.x = player.x + Math.cos(player.angle) * (player.radius);
+        bolt.y = player.y + Math.sin(player.angle) * (player.radius);
+        bolt.angle = player.angle;
+        bolt.distance = 0;
+
+        boltCooldown = player.cooldown;
+    }
     //lancer un sort
     if (
         event.button === 0 &&

@@ -154,6 +154,32 @@ function update() {
         arrow.active = false;
         }
     }
+    //Système d'arbalette
+    if (boltCooldown > 0) {
+        boltCooldown--;
+    }
+    if (bolt.active) {
+        bolt.x += Math.cos(bolt.angle) * bolt.speed;
+        bolt.y += Math.sin(bolt.angle) * bolt.speed;
+        bolt.distance += bolt.speed;
+        if (enemy.alive) {
+            const distanceToEnemy = Math.hypot(enemy.x - bolt.x, enemy.y - bolt.y);
+            if (distanceToEnemy < enemy.radius) {
+                enemy.hp -= player.damage;
+                enemy.healthBarTimer = 120;
+                bolt.active = false;
+                if (enemy.hp <= 0) {
+                    enemy.hp = 0;
+                    enemy.alive = false;
+                    enemy.respawnTimer = 180;
+                    xp += enemy.xpReward;
+                }
+            }
+        }
+        if (bolt.distance >= bolt.maxDistance) {
+        bolt.active = false;
+        }
+    }
     //Système de magie
     if (magicCooldown > 0) {
         magicCooldown--;

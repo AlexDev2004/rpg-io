@@ -49,18 +49,6 @@ const classStat = {
         speed: 5,
         cooldown: 30,
     },
-    "Axe": {
-        damage: 20,
-        hpMax: 130,
-        speed: 2.5,
-        cooldown: 70,
-    },
-    "Bow": {
-        damage: 5,
-        hpMax: 110,
-        speed: 5,
-        cooldown: 30,
-    },
     "Thief": {
         damage: 5,
         hpMax: 110,
@@ -79,6 +67,12 @@ const classStat = {
         speed: 4,
         cooldown: 40,
     },
+    "Axe": {
+        damage: 20,
+        hpMax: 130,
+        speed: 2.5,
+        cooldown: 70,
+    },
     "Hammer": {
         damage: 30,
         hpMax: 140,
@@ -95,6 +89,24 @@ const classStat = {
         damage: 10,
         hpMax: 130,
         speed: 5,
+        cooldown: 30,
+    },
+    "Bow": {
+        damage: 5,
+        hpMax: 110,
+        speed: 5,
+        cooldown: 30,
+    },
+    "Crossbow": {
+        damage: 20,
+        hpMax: 130,
+        speed: 5,
+        cooldown: 60,
+    },
+    "Wizard": {
+        damage: 10,
+        hpMax: 120,
+        Speed: 5,
         cooldown: 30,
     },
 }
@@ -124,6 +136,7 @@ let attackCooldown = 0;
 let arrowCooldown = 0;
 let magicCooldown = 0;
 let thAxeCooldown = 0;
+let boltCooldown = 0;
 
 //Variables des ennemis
 const enemy = {
@@ -144,6 +157,16 @@ const arrow = {
     y: 0,
     angle: 0,
     speed: 10,
+    distance: 0,
+    maxDistance: 500,
+    active: false,
+};
+//Variables des carreaux
+const bolt = {
+    x: 0,
+    y: 0,
+    angle: 0,
+    speed: 20,
     distance: 0,
     maxDistance: 500,
     active: false,
