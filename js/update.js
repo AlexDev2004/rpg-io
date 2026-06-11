@@ -259,4 +259,30 @@ function update() {
         thAxe.active = false;
         }
     }
+    //Système de javelot
+    if (javelCooldown > 0) {
+        javelCooldown--;
+    }
+    if (javel.active) {
+        javel.x += Math.cos(javel.angle) * javel.speed;
+        javel.y += Math.sin(javel.angle) * javel.speed;
+        javel.distance += javel.speed;
+        if (enemy.alive) {
+            const distanceToEnemy = Math.hypot(enemy.x - javel.x, enemy.y - javel.y);
+            if (distanceToEnemy < enemy.radius) {
+                enemy.hp -= player.damage;
+                enemy.healthBarTimer = 120;
+                javel.active = false;
+                if (enemy.hp <= 0) {
+                    enemy.hp = 0;
+                    enemy.alive = false;
+                    enemy.respawnTimer = 180;
+                    xp += enemy.xpReward;
+                }
+            }
+        }
+        if (javel.distance >= javel.maxDistance) {
+        javel.active = false;
+        }
+    }
 }

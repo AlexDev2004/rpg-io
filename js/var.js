@@ -69,6 +69,12 @@ const classStat = {
         speed: 4,
         cooldown: 40,
     },
+    "Javelin": {
+        damage: 20,
+        hpMax: 150,
+        speed: 5,
+        cooldown: 50,
+    },
     "Axe": {
         damage: 20,
         hpMax: 130,
@@ -114,7 +120,7 @@ const classStat = {
     "Wizard": {
         damage: 10,
         hpMax: 120,
-        Speed: 5,
+        speed: 5,
         cooldown: 30,
     },
 }
@@ -146,6 +152,7 @@ let arrowToCooldown = 0;
 let magicCooldown = 0;
 let thAxeCooldown = 0;
 let boltCooldown = 0;
+let javelCooldown = 0;
 
 //Variables des ennemis
 const enemy = {
@@ -208,6 +215,16 @@ const thAxe = {
     speed: 5,
     distance: 0,
     maxDistance: 200,
+    active: false,
+};
+//Variables des javelot
+const javel = {
+    x: 0,
+    y: 0,
+    angle: 0,
+    speed: 8,
+    distance: 0,
+    maxDistance: 400,
     active: false,
 };
 

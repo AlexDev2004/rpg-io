@@ -157,6 +157,21 @@ document.addEventListener("mousedown", function(event) {
 
         thAxeCooldown = player.cooldown;
     }
+    //tirer un javelot
+    if (
+        event.button === 0 &&
+        playerClass === "Javelin" &&
+        !javel.active &&
+        javelCooldown === 0
+    ) {
+        javel.active = true;
+        javel.x = player.x + Math.cos(player.angle) * (player.radius);
+        javel.y = player.y + Math.sin(player.angle) * (player.radius);
+        javel.angle = player.angle;
+        javel.distance = 0;
+
+        javelCooldown = player.cooldown;
+    }
 });
 
 function weaponSegmentHit(length, target) {

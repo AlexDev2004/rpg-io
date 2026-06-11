@@ -361,6 +361,41 @@ function draw() {
             ctx.fill();
         ctx.restore();
     }
+    //Javelot
+    if (playerClass === "Javelin") {
+        let javelDrawX;
+        let javelDrawY;
+        let javelDrawAngle;
+        if (javel.active) {
+            javelDrawX = javel.x;
+            javelDrawY = javel.y;
+            javelDrawAngle = javel.angle;
+        } else {
+            javelDrawX = player.x + Math.cos(player.angle) * (player.radius);
+            javelDrawY = player.y + Math.sin(player.angle) * (player.radius);
+            javelDrawAngle = player.angle;
+        }
+        ctx.save();
+        ctx.translate(javelDrawX, javelDrawY);
+        ctx.rotate(javelDrawAngle);
+        ctx.fillStyle = "lightslategray";
+        ctx.fillRect(70, -2.5, 40, 5);
+        ctx.beginPath();
+            ctx.moveTo(110, -2.5);
+            ctx.lineTo(110, 2.5);
+            ctx.lineTo(130, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.fillStyle = "brown";
+        ctx.fillRect(0, -2.5, 70, 5);
+        ctx.beginPath();
+            ctx.moveTo(0, -2.5);
+            ctx.lineTo(0, 2.5);
+            ctx.lineTo(-20, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.restore();
+    }
 
     //dessin du joueur
     ctx.beginPath();
@@ -499,6 +534,24 @@ function drawClassCard(className, cardX, cardY) {
         ctx.beginPath();
             ctx.fillStyle = "lightslategray";
             ctx.arc(40,0,5,0,Math.PI*2);
+            ctx.fill();
+    }
+    else if (className === "Javelin") {
+        ctx.fillStyle = "lightslategray";
+        ctx.fillRect(70, -2.5, 40, 5);
+        ctx.beginPath();
+            ctx.moveTo(110, -2.5);
+            ctx.lineTo(110, 2.5);
+            ctx.lineTo(130, 0);
+            ctx.closePath();
+            ctx.fill();
+        ctx.fillStyle = "brown";
+        ctx.fillRect(0, -2.5, 70, 5);
+        ctx.beginPath();
+            ctx.moveTo(0, -2.5);
+            ctx.lineTo(0, 2.5);
+            ctx.lineTo(-20, 0);
+            ctx.closePath();
             ctx.fill();
     }
 
